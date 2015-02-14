@@ -1,0 +1,33 @@
+//created on: 14-Feb-2015
+package hindmarch.SimpleDrools
+
+//list any import classes here.
+
+
+
+//declare any global variables here
+
+
+
+
+rule "Message Handler"
+
+    when
+        m : Message (status==Message.UNHANDLED,mtext:message)
+    then
+        System.out.printf("New message \"%s\"\n",mtext);
+        modify (m){
+        	setStatus(Message.HANDLED),
+        	setMessage(mtext+" OK")
+        };
+
+end
+
+rule "Message Dispatcher"
+    
+    when
+        m:Message(status==Message.HANDLED,mtext:message)
+    then
+        System.out.printf("Dispatched message \"%s\"\n",mtext);
+
+end

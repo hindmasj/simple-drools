@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="DROOLS/Drools"/>
+	<classpathentry kind="lib" path="/opt/drools-distribution-6.1.0.Final/examples/binaries/logback-classic-1.0.9.jar"/>
+	<classpathentry kind="lib" path="/opt/drools-distribution-6.1.0.Final/examples/binaries/logback-core-1.0.9.jar"/>
+	<classpathentry kind="output" path="target"/>
+</classpath>
