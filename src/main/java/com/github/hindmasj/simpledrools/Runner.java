@@ -16,15 +16,19 @@ public class Runner {
         KieContainer kc = ks.getKieClasspathContainer();
         KieSession ksession = kc.newKieSession(SESSION);
         
+		if(args.length>0 && args[0].equals("0")){
+			System.out.println("No Audit Trail");
+		}else{
+			ksession.addEventListener( new DebugAgendaEventListener() );
+			ksession.addEventListener( new DebugRuleRuntimeEventListener() );
+		}
+
         Runner runner=new Runner();
 		runner.run(ksession);
 	}
 	
 	public void run(KieSession ksession){
-		ksession.addEventListener( new DebugAgendaEventListener() );
-        ksession.addEventListener( new DebugRuleRuntimeEventListener() );
-
-        Message one=new Message("Hello World One",Message.UNHANDLED);
+        Message one=new Message("Hello World One",Message.UNHANDLED,Message.PASSIVE,0);
         
         ksession.insert(one);
         ksession.fireAllRules();
