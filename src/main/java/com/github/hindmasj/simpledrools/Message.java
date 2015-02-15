@@ -6,6 +6,7 @@ public class Message {
 	
 	String message;
 	int status;
+	int type;
 	
 	public Message(String message, int status) {
 		super();
@@ -20,7 +21,14 @@ public class Message {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	public String getMessage() {
 		return message;
 	}
