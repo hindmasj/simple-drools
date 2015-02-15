@@ -1,14 +1,9 @@
 //created on: 14-Feb-2015
-package hindmarch.SimpleDrools
+package com.github.hindmasj.simpledrools
 
 //list any import classes here.
 
-
-
 //declare any global variables here
-
-
-
 
 rule "Message Handler"
 

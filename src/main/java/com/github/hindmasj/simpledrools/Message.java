@@ -1,4 +1,4 @@
-package hindmarch.SimpleDrools;
+package com.github.hindmasj.simpledrools;
 
 public class Message {
 	public static final int UNHANDLED=0;

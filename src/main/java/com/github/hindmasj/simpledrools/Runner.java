@@ -1,5 +1,5 @@
-package hindmarch.SimpleDrools;
-import org.kie.api.KieBase;
+package com.github.hindmasj.simpledrools;
+
 import org.kie.api.KieServices;
 import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
