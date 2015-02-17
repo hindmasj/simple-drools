@@ -28,9 +28,14 @@ public class Runner {
 	}
 	
 	public void run(KieSession ksession){
-        Message one=new Message("Hello World One",Message.UNHANDLED,Message.PASSIVE,0);
-        
-        ksession.insert(one);
+        Message m=new Message("One",Message.UNHANDLED,Message.PASSIVE,0);
+        ksession.insert(m);
+        m=new Message("Two",Message.UNHANDLED,Message.PASSIVE,0);
+        ksession.insert(m);
+        m=new Message("Three",Message.UNHANDLED,Message.PASSIVE,0);
+        ksession.insert(m);
+        m=new Message("A",Message.UNHANDLED,Message.ACTIVE,3);
+        ksession.insert(m);
         ksession.fireAllRules();
 	}
 

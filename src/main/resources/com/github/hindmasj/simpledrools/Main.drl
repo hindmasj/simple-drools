@@ -5,24 +5,41 @@ package com.github.hindmasj.simpledrools
 
 //declare any global variables here
 
-rule "Message Handler"
+rule "Message Receiver"
 
     when
         m : Message (status==Message.UNHANDLED,mtext:message)
     then
         System.out.printf("New message \"%s\"\n",mtext);
         modify (m){
-        	setStatus(Message.HANDLED),
-        	setMessage(mtext+" OK")
+        	setStatus(Message.RECEIVED)
         };
 
 end
 
-rule "Message Dispatcher"
+rule "Message Handler"
     
     when
-        m:Message(status==Message.HANDLED,mtext:message)
+        ma:Message(status==Message.RECEIVED,atext:message,type==Message.ACTIVE,mv:value>0) and
+        mp:Message(status==Message.RECEIVED,ptext:message,type==Message.PASSIVE)
     then
-        System.out.printf("Dispatched message \"%s\"\n",mtext);
+    	System.out.printf("Message \"%s\" active\n",atext);
+    	modify(ma){
+    		setValue(mv-1)
+    		};
+        System.out.printf("Dispatched message \"%s\"\n",ptext);
+		modify(mp){
+			setStatus(Message.HANDLED)
+			};
+end
 
+rule "Message Closer"
+
+	when
+		m:Message(status==Message.RECEIVED,text:message,type==Message.ACTIVE,value==0)
+	then
+		System.out.printf("Message \"%s\" completed\n",text);
+		modify(m){
+			setStatus(Message.HANDLED)
+			};
 end

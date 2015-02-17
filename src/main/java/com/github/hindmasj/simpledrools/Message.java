@@ -3,6 +3,7 @@ package com.github.hindmasj.simpledrools;
 public class Message {
 	public static final int UNHANDLED=0;
 	public static final int HANDLED=1;
+	public static final int RECEIVED=2;
 	public static final int PASSIVE=0;
 	public static final int ACTIVE=1;
 	
