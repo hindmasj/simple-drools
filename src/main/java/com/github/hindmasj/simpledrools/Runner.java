@@ -10,6 +10,7 @@ import org.kie.api.runtime.KieSession;
 public class Runner {
 	public static final String SESSION="SimpleKS";
 	public static final String BASE="SimpleKB";
+	public static final String CONSOLE="console";
 
 	public static void main(String[] args) {
 		KieServices ks = KieServices.Factory.get();
@@ -24,7 +25,12 @@ public class Runner {
 		}
 
         Runner runner=new Runner();
+        Console console=new TextConsole(ksession);
+		ksession.setGlobal(CONSOLE, console);
+
 		runner.run(ksession);
+        console.run();
+		System.out.println("\nBye");
 	}
 	
 	public void run(KieSession ksession){

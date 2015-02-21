@@ -4,13 +4,14 @@ package com.github.hindmasj.simpledrools
 //list any import classes here.
 
 //declare any global variables here
+global Console console
 
 rule "Message Receiver"
 
     when
         m : Message (status==Message.UNHANDLED,mtext:message)
     then
-        System.out.printf("New message \"%s\"\n",mtext);
+        console.printf("New message \"%s\"\n",mtext);
         modify (m){
         	setStatus(Message.RECEIVED)
         };
@@ -23,11 +24,11 @@ rule "Message Handler"
         ma:Message(status==Message.RECEIVED,atext:message,type==Message.ACTIVE,mv:value>0) and
         mp:Message(status==Message.RECEIVED,ptext:message,type==Message.PASSIVE)
     then
-    	System.out.printf("Message \"%s\" active\n",atext);
+    	console.printf("Message \"%s\" active\n",atext);
     	modify(ma){
     		setValue(mv-1)
     		};
-        System.out.printf("Dispatched message \"%s\"\n",ptext);
+        console.printf("Dispatched message \"%s\"\n",ptext);
 		modify(mp){
 			setStatus(Message.HANDLED)
 			};
@@ -38,7 +39,7 @@ rule "Message Closer"
 	when
 		m:Message(status==Message.RECEIVED,text:message,type==Message.ACTIVE,value==0)
 	then
-		System.out.printf("Message \"%s\" completed\n",text);
+		console.printf("Message \"%s\" completed\n",text);
 		modify(m){
 			setStatus(Message.HANDLED)
 			};
