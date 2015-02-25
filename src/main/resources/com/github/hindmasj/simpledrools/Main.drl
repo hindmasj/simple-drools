@@ -32,6 +32,7 @@ rule "Message Handler"
 		modify(mp){
 			setStatus(Message.HANDLED)
 			};
+		retract(mp);
 end
 
 rule "Message Closer"
@@ -43,4 +44,5 @@ rule "Message Closer"
 		modify(m){
 			setStatus(Message.HANDLED)
 			};
+		retract(m);
 end
